@@ -1,5 +1,5 @@
 {
-  description = "Malo’s Nix system configs, and some other useful stuff.";
+  description = "Quark’s Nix system configs, and some other useful stuff.";
 
   inputs = {
     # Package sets
@@ -36,6 +36,8 @@
 
       homeStateVersion = "23.11";
 
+      #devEnvs = import ./devenvs;
+
       nixpkgsDefaults = {
         config = {
           allowUnfree = true;
@@ -57,10 +59,10 @@
       };
 
       primaryUserDefaults = {
-        username = "malo";
-        fullName = "Malo Bourgon";
-        email = "mbourgon@gmail.com";
-        nixConfigDirectory = "/Users/malo/.config/nixpkgs";
+        username = "quark";
+        fullName = "Quark Wei";
+        email = "quark.j.wei@gmail.com";
+        nixConfigDirectory = "/Users/quark/.config/nixpkgs";
       };
     in
     {
@@ -141,14 +143,14 @@
 
       homeManagerModules = {
         # My configurations
-        malo-colors = import ./home/colors.nix;
+        #malo-colors = import ./home/colors.nix;
         malo-config-files = import ./home/config-files.nix;
         malo-fish = import ./home/fish.nix;
         malo-git = import ./home/git.nix;
         malo-git-aliases = import ./home/git-aliases.nix;
-        malo-gh-aliases = import ./home/gh-aliases.nix;
-        malo-kitty = import ./home/kitty.nix;
-        malo-neovim = import ./home/neovim.nix;
+        #malo-gh-aliases = import ./home/gh-aliases.nix;
+        #malo-kitty = import ./home/kitty.nix;
+        #malo-neovim = import ./home/neovim.nix;
         malo-packages = import ./home/packages.nix;
         malo-starship = import ./home/starship.nix;
         malo-starship-symbols = import ./home/starship-symbols.nix;
@@ -177,11 +179,11 @@
         };
 
         # My Apple Silicon macOS laptop config
-        MaloBookPro = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
+        Shifter = makeOverridable self.lib.mkDarwinSystem (primaryUserDefaults // {
           modules = attrValues self.darwinModules ++ singleton {
             nixpkgs = nixpkgsDefaults;
-            networking.computerName = "Malo’s 💻";
-            networking.hostName = "MaloBookPro";
+            networking.computerName = "Quark’s 💻";
+            networking.hostName = "Shifter";
             networking.knownNetworkServices = [
               "Wi-Fi"
               "USB 10/100/1000 LAN"
@@ -195,7 +197,7 @@
         });
 
         # Config with small modifications needed/desired for CI with GitHub workflow
-        githubCI = self.darwinConfigurations.MaloBookPro.override {
+        githubCI = self.darwinConfigurations.Shifter.override {
           system = "x86_64-darwin";
           username = "runner";
           nixConfigDirectory = "/Users/runner/work/nixpkgs/nixpkgs";
@@ -253,6 +255,6 @@
           };
         };
       # }}}
-    });
+    });# // devEnvs;
 }
 # vim: foldmethod=marker

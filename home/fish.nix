@@ -13,12 +13,22 @@ in
   # Add Fish plugins
   home.packages = [
     pkgs.fishPlugins.done
-    pkgs.fishPlugins.github-copilot-cli-fish
+    #pkgs.fishPlugins.github-copilot-cli-fish
   ];
 
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
+    # Create a direnv flake in the current directory
+    # https://determinate.systems/posts/nix-direnv
+    dvd = ''
+      echo "use flake my#$argv[1]" >> .envrc
+      direnv allow
+    '';
+    dvt = ''
+      nix flake init -t my#$argv[1]
+      direnv allow
+    '';
     # Toggles `$term_background` between "light" and "dark". Other Fish functions trigger when this
     # variable changes. We use a universal variable so that all instances of Fish have the same
     # value for the variable.
@@ -113,42 +123,50 @@ in
     ns = "nix search";
 
     # Other
-    ".." = "cd ..";
-    ":q" = "exit";
-    cat = "${bat}/bin/bat";
-    du = "${du-dust}/bin/dust";
-    g = "${gitAndTools.git}/bin/git";
-    la = "ll -a";
-    ll = "ls -l --time-style long-iso --icons";
-    ls = "${exa}/bin/exa";
-    tb = "toggle-background";
+    #".." = "cd ..";
+    #":q" = "exit";
+    #cat = "${bat}/bin/bat";
+    #du = "${du-dust}/bin/dust";
+    #g = "${gitAndTools.git}/bin/git";
+    #la = "ll -a";
+    #ll = "ls -l --time-style long-iso --icons";
+    #ls = "${exa}/bin/exa";
+    #tb = "toggle-background";
   };
 
   # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
   programs.fish.shellInit = ''
     set -U fish_term24bit 1
-    ${optionalString pkgs.stdenv.isDarwin "set-background-to-macOS"}
+    #${optionalString pkgs.stdenv.isDarwin "set-background-to-macOS"}
   '';
 
   programs.fish.interactiveShellInit = ''
     set -g fish_greeting ""
+    
     ${pkgs.thefuck}/bin/thefuck --alias | source
+    abbr f fuck
 
     # Run function to set colors that are dependant on `$term_background` and to register them so
     # they are triggerd when the relevent event happens or variable changes.
-    set-shell-colors
+    #set-shell-colors
 
     # Set Fish colors that aren't dependant the `$term_background`.
-    set -g fish_color_quote        cyan      # color of commands
-    set -g fish_color_redirection  brmagenta # color of IO redirections
-    set -g fish_color_end          blue      # color of process separators like ';' and '&'
-    set -g fish_color_error        red       # color of potential errors
-    set -g fish_color_match        --reverse # color of highlighted matching parenthesis
-    set -g fish_color_search_match --background=yellow
-    set -g fish_color_selection    --reverse # color of selected text (vi mode)
-    set -g fish_color_operator     green     # color of parameter expansion operators like '*' and '~'
-    set -g fish_color_escape       red       # color of character escapes like '\n' and and '\x70'
-    set -g fish_color_cancel       red       # color of the '^C' indicator on a canceled command
+    #set -g fish_color_quote        cyan      # color of commands
+    #set -g fish_color_redirection  brmagenta # color of IO redirections
+    #set -g fish_color_end          blue      # color of process separators like ';' and '&'
+    #set -g fish_color_error        red       # color of potential errors
+    #set -g fish_color_match        --reverse # color of highlighted matching parenthesis
+    #set -g fish_color_search_match --background=yellow
+    #set -g fish_color_selection    --reverse # color of selected text (vi mode)
+    #set -g fish_color_operator     green     # color of parameter expansion operators like '*' and '~'
+    #set -g fish_color_escape       red       # color of character escapes like '\n' and and '\x70'
+    #set -g fish_color_cancel       red       # color of the '^C' indicator on a canceled command
+    abbr g git
+
+    # Alias all git aliases
+    for al in (git config -l | grep '^alias\.' | cut -d'=' -f1 | cut -d'.' -f2)
+        abbr g$al "git $al"
+    end
   '';
   # }}}
 }

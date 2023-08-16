@@ -1,17 +1,24 @@
 {
+  system.activationScripts.postUserActivation.text = ''
+    # Following line should allow us to avoid a logout/login cycle
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
+
   system.defaults.NSGlobalDomain = {
     "com.apple.trackpad.scaling" = 3.0;
-    AppleInterfaceStyleSwitchesAutomatically = true;
-    AppleMeasurementUnits = "Centimeters";
-    AppleMetricUnits = 1;
-    AppleShowScrollBars = "Automatic";
-    AppleTemperatureUnit = "Celsius";
-    InitialKeyRepeat = 15;
-    KeyRepeat = 2;
+    #AppleInterfaceStyleSwitchesAutomatically = true;
+    #AppleMeasurementUnits = "Centimeters";
+    #AppleMetricUnits = 1;
+    #AppleShowScrollBars = "Automatic";
+    #AppleTemperatureUnit = "Celsius";
+    InitialKeyRepeat = 30;
+    KeyRepeat = 1;
     NSAutomaticCapitalizationEnabled = false;
     NSAutomaticDashSubstitutionEnabled = false;
     NSAutomaticPeriodSubstitutionEnabled = false;
-    _HIHideMenuBar = false;
+    NSAutomaticQuoteSubstitutionEnabled = false;
+    NSAutomaticSpellingCorrectionEnabled = false;
+    _HIHideMenuBar = false; # autohide top panel
   };
 
   # Firewall
@@ -24,9 +31,10 @@
 
   # Dock and Mission Control
   system.defaults.dock = {
-    autohide = true;
+    #autohide = true;
     expose-group-by-app = false;
     mru-spaces = false;
+    show-process-indicators = true;
     tilesize = 128;
     # Disable all hot corners
     wvous-bl-corner = 1;
@@ -46,12 +54,43 @@
 
   # Trackpad
   system.defaults.trackpad = {
-    Clicking = false;
-    TrackpadRightClick = true;
+    Clicking = true;
+    Dragging = true;
+    #
+    FirstClickThreshold = 0;
+    SecondClickThreshold = 0;
+  };
+
+  # Keyboard
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToControl = true;
   };
 
   # Finder
   system.defaults.finder = {
-    FXEnableExtensionChangeWarning = true;
+    AppleShowAllExtensions = true;
+    FXEnableExtensionChangeWarning = false;
+    CreateDesktop = false; # disable desktop icons
+  };
+
+  system.defaults.CustomSystemPreferences = {
+    "com.apple.AppleMultitouchTrackpad" = {
+      ActuationStrength = 0;
+      TrackpadThreeFingerHorizSwipeGesture = 0;
+      TrackpadThreeFingerVertSwipeGesture = 0;
+      TrackpadFourFingerVertSwipeGesture = 2;
+    };
+    "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
+      TrackpadThreeFingerHorizSwipeGesture = 0;
+      TrackpadFourFingerVertSwipeGesture = 2;
+    };
+    "com.apple.dock" = {
+      showAppExposeGestureEnabled = true;
+      showMissionControlGestureEnabled = true;
+    };
+    "com.apple.HIToolbox" = {
+      AppleFnUsageType = 0; #fn key does nothing
+    };
   };
 }

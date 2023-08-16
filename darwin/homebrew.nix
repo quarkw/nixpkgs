@@ -29,6 +29,11 @@ in
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.cleanup = "zap";
   homebrew.global.brewfile = true;
+    
+  homebrew.caskArgs = {
+    appdir = "~/Applications";
+    "no_quarantine" = true;
+  };
 
   homebrew.taps = [
     "homebrew/cask"
@@ -37,78 +42,99 @@ in
     "homebrew/cask-versions"
     "homebrew/core"
     "homebrew/services"
-    "nrlquaker/createzap"
+    #"nrlquaker/createzap"
+    "quarkw/cask"
   ];
 
   # Prefer installing application from the Mac App Store
   homebrew.masApps = {
-    "1Password for Safari" = 1569813296;
-    "Accelerate for Safari" = 1459809092;
-    DaisyDisk = 411643860;
-    "Dark Mode for Safari" = 1397180934;
-    Deliveries = 290986013;
-    Fantastical = 975937182;
-    Flighty = 1358823008;
-    Keynote = 409183694;
-    "Notion Web Clipper" = 1559269364;
-    Numbers = 409203825;
-    Pages = 409201541;
-    Patterns = 429449079;
-    "Pixelmator Pro" = 1289583905;
-    "Save to Raindrop.io" = 1549370672;
-    Slack = 803453959;
-    "Swift Playgrounds" = 1496833156;
-    "Tailscale" = 1475387142;
-    "Things 3" = 904280696;
-    Vimari = 1480933944;
-    "WiFi Explorer" = 494803304;
-    Xcode = 497799835;
-    "Yubico Authenticator" = 1497506650;
+    #"1Password for Safari" = 1569813296;
+    #"Accelerate for Safari" = 1459809092;
+    #DaisyDisk = 411643860;
+    #"Dark Mode for Safari" = 1397180934;
+    #Deliveries = 290986013;
+    #Fantastical = 975937182;
+    #Flighty = 1358823008;
+    #Keynote = 409183694;
+    #"Notion Web Clipper" = 1559269364;
+    #Numbers = 409203825;
+    #Pages = 409201541;
+    #Patterns = 429449079;
+    #"Pixelmator Pro" = 1289583905;
+    #"Save to Raindrop.io" = 1549370672;
+    #Slack = 803453959;
+    #"Swift Playgrounds" = 1496833156;
+    #"Tailscale" = 1475387142;
+    #"Things 3" = 904280696;
+    #Vimari = 1480933944;
+    #"WiFi Explorer" = 494803304;
+    #Xcode = 497799835;
+    #"Yubico Authenticator" = 1497506650;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
   # limitiations, e.g., Transmit, install the Homebrew Cask.
   homebrew.casks = [
+    "alfred"
+    "alt-tab" # contexts? alternative
+    "visual-studio-code"
     "1password"
     "1password-cli"
-    "anki"
-    "arq"
-    "balenaetcher"
-    "cleanmymac"
-    "element"
-    "etrecheckpro"
-    "discord"
+    "bambu-studio"
+    "beeper"
+    "bartender"
+    "buzz"
+    "coteditor"
+    "calibre"
+    "cron"
+    "orion"
+    "bettertouchtool"
+    "kap"
+    "keyboard-maestro"
+    "swish"
+    "slidepad"
+    "tailscale"
+    "wezterm"
+    "windscribe"
+    #"gcenx/wine/wine-crossover"
+    #"anki"
+    #"arq"
+    #"balenaetcher"
+    #"cleanmymac"
+    #"etrecheckpro"
+    #"discord"
     "firefox"
-    "google-chrome"
-    "google-drive"
-    "gpg-suite"
-    "hammerspoon"
-    "keybase"
-    "ledger-live"
-    "loopback"
-    "mimestream"
-    "multiviewer-for-f1"
-    "notion"
-    "nvidia-geforce-now"
-    "obsbot-me-tool"
-    "obsbot-webcam"
-    "parallels"
-    "postman"
-    "protonvpn"
-    "raindropio"
-    "raycast"
-    "signal"
-    "skype"
-    "sloth"
-    "steam"
-    "superhuman"
-    "tor-browser"
-    "transmission"
-    "transmit"
+    #"google-chrome"
+    #"google-drive"
+    #"gpg-suite"
+    #"hammerspoon"
+    #"keybase"
+    #"ledger-live"
+    #"loopback"
+    #"mimestream"
+    #"multiviewer-for-f1"
+    #"notion"
+    #"nvidia-geforce-now"
+    #"obsbot-me-tool"
+    #"obsbot-webcam"
+    #"parallels"
+    #"postman"
+    #"protonvpn"
+    #"raindropio"
+    #"raycast"
+    #"signal"
+    #"skype"
+    #"sloth"
+    #"steam"
+    #"superhuman"
+    #"tor-browser"
+    #"transmission"
+    #"transmit"
     "visual-studio-code"
-    "vlc"
-    "yubico-yubikey-manager"
-    "yubico-yubikey-personalization-gui"
+    #"vlc"
+    #"yubico-yubikey-manager"
+    #"yubico-yubikey-personalization-gui"
+    "zoom"
   ];
 
   # Configuration related to casks
@@ -134,7 +160,21 @@ in
   # For cli packages that aren't currently available for macOS in `nixpkgs`.Packages should be
   # installed in `../home/default.nix` whenever possible.
   homebrew.brews = [
-    "swift-format"
-    "swiftlint"
+    #"swift-format"
+    #"swiftlint"
+    "xcodegen"
   ];
+
+  homebrew.masApps = {
+    "1password for Safari" = 1569813296;
+    "Kagi for Safari" = 1622835804;
+    "Canary Mail" = 1236045954;
+    "rcmd" = 1596283165;
+    "xcode" = 497799835;
+    #DaisyDisk = 411643860;
+    #Vimari = 1480933944;
+    #"WiFi Explorer" = 494803304;
+    #"Reeder 5." = 1529448980;
+    #"Okta Extension App" = 1439967473;
+  };
 }

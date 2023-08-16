@@ -53,28 +53,33 @@
       unrar # extract RAR archives
       upterm # secure terminal sharing
       wget
+      yt-dlp
       xz # extract XZ archives
     ;
 
     # Dev stuff
     inherit (pkgs)
-      cloc # source code line counter
-      github-copilot-cli
-      google-cloud-sdk
+      #cloc # source code line counter
+      cmake
+      #github-copilot-cli
+      #google-cloud-sdk
+      #elixir
       # idris2
-      jq
-      nodejs
-      s3cmd
-      stack
-      typescript
+      #jq
+      #nodejs
+      pijul
+      #php
+      #s3cmd
+      #stack
+      #typescript
     ;
-    inherit (pkgs.haskellPackages)
-      cabal-install
-      hoogle
-      hpack
-      implicit-hie
-    ;
-    agda = pkgs.agda.withPackages (ps: [ ps.standard-library ]);
+    #inherit (pkgs.haskellPackages)
+      #cabal-install
+      #hoogle
+      #hpack
+      #implicit-hie
+    #;
+    #agda = pkgs.agda.withPackages (ps: [ ps.standard-library ]);
 
     # Useful nix related tools
     inherit (pkgs)

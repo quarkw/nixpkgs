@@ -8,7 +8,7 @@
     pl = "pull";
     pu = "push";
     puf = "push --force";
-    s = "status";
+    st = "status";
 
     # Checkout commands
     co = "checkout";
