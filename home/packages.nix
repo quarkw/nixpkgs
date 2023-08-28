@@ -25,6 +25,7 @@
   # Some options also set in `../darwin/homebrew.nix`.
   programs.ssh.enable = true;
   programs.ssh.controlPath = "~/.ssh/%C"; # ensures the path is unique but also fixed length
+  programs.ssh.includes = ["hosts/*"];
 
   # Zoxide, a faster way to navigate the filesystem
   # https://github.com/ajeetdsouza/zoxide
@@ -50,6 +51,7 @@
       ripgrep # better version of `grep`
       tealdeer # rust implementation of `tldr`
       thefuck
+      tmux
       unrar # extract RAR archives
       upterm # secure terminal sharing
       wget
