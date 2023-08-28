@@ -31,7 +31,7 @@ in
   homebrew.global.brewfile = true;
     
   homebrew.caskArgs = {
-    appdir = "~/Applications";
+    appdir = "/Applications/casks";
     "no_quarantine" = true;
   };
 
@@ -78,14 +78,24 @@ in
     "alfred"
     "alt-tab" # contexts? alternative
     "visual-studio-code"
-    "1password"
+    "microsoft-remote-desktop"
+    {
+      name = "1password";
+      args = { appdir = "/Applications"; };
+    }
     "1password-cli"
-    "bambu-studio"
+    {
+      name = "bambu-studio";
+      greedy = true;
+    }
     "beeper"
     "bartender"
     "buzz"
     "coteditor"
-    "calibre"
+    {
+      name = "calibre";
+      greedy = true;
+    }
     "cron"
     "orion"
     "bettertouchtool"
@@ -93,8 +103,14 @@ in
     "keyboard-maestro"
     "swish"
     "slidepad"
-    "tailscale"
-    "wezterm"
+    {
+      name = "tailscale";
+      args = { appdir = "/Applications"; };
+    }
+    {
+      name = "wezterm";
+      greedy = true;
+    }
     "windscribe"
     #"gcenx/wine/wine-crossover"
     #"anki"
@@ -170,6 +186,7 @@ in
     "Kagi for Safari" = 1622835804;
     "Canary Mail" = 1236045954;
     "rcmd" = 1596283165;
+    "wireguard" = 1451685025;
     "xcode" = 497799835;
     #DaisyDisk = 411643860;
     #Vimari = 1480933944;
