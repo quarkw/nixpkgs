@@ -135,7 +135,7 @@
         malo-bootstrap = import ./darwin/bootstrap.nix;
         malo-defaults = import ./darwin/defaults.nix;
         malo-general = import ./darwin/general.nix;
-        malo-homebrew = import ./darwin/homebrew.nix;
+        malo-homebrew = import ./darwin/homebrew/homebrew.nix;
 
         # Modules I've created
         users-primaryUser = import ./modules/darwin/users.nix;
