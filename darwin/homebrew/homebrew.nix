@@ -5,8 +5,9 @@ let
   caskPresent = cask: lib.any (x: x.name == cask) config.homebrew.casks;
   brewEnabled = config.homebrew.enable;
   homePackages = config.home-manager.users.${config.users.primaryUser.username}.home.packages;
+  casks = import ./casks.nix { inherit lib; };
+  applicationCasks = [];
 in
-
 {
   environment.shellInit = mkIf brewEnabled ''
     eval "$(${config.homebrew.brewPrefix}/brew shellenv)"
@@ -79,23 +80,11 @@ in
     "alt-tab" # contexts? alternative
     "visual-studio-code"
     "microsoft-remote-desktop"
-    {
-      name = "1password";
-      args = { appdir = "/Applications"; };
-    }
     "1password-cli"
-    {
-      name = "bambu-studio";
-      greedy = true;
-    }
     "beeper"
     "bartender"
     "buzz"
     "coteditor"
-    {
-      name = "calibre";
-      greedy = true;
-    }
     "cron"
     "orion"
     "bettertouchtool"
@@ -103,14 +92,6 @@ in
     "keyboard-maestro"
     "swish"
     "slidepad"
-    {
-      name = "tailscale";
-      args = { appdir = "/Applications"; };
-    }
-    {
-      name = "wezterm";
-      greedy = true;
-    }
     "windscribe"
     #"gcenx/wine/wine-crossover"
     #"anki"
@@ -151,7 +132,7 @@ in
     #"yubico-yubikey-manager"
     #"yubico-yubikey-personalization-gui"
     "zoom"
-  ];
+  ] ++ casks.greedy ++ casks.applicationsFolderInstall;
 
   # Configuration related to casks
   home-manager.users.${config.users.primaryUser.username} =
