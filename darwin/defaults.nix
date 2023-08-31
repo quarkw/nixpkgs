@@ -4,6 +4,7 @@
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
+  #https://macos-defaults.com/
   system.defaults.NSGlobalDomain = {
     "com.apple.trackpad.scaling" = 3.0;
     #AppleInterfaceStyleSwitchesAutomatically = true;
@@ -35,7 +36,7 @@
     expose-group-by-app = false;
     mru-spaces = false;
     show-process-indicators = true;
-    tilesize = 128;
+    tilesize = 36;
     # Disable all hot corners
     wvous-bl-corner = 1;
     wvous-br-corner = 1;
