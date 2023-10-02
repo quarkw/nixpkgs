@@ -42,7 +42,7 @@
       coreutils
       curl
       du-dust # fancy version of `du`
-      exa # fancy version of `ls`
+      eza # fancy version of `ls`
       fd # fancy version of `find`
       htop # fancy version of `top`
       hyperfine # benchmarking tool
