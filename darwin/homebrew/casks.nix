@@ -19,6 +19,7 @@ let
     "1password-cli"
     "bambu-studio"
     "calibre"
+    "runelite"
     "wezterm"
   ];
   applicationFolderPackages = [
