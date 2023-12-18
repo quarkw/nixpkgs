@@ -253,6 +253,19 @@
               inherit (pkgs) poetry python310 pyright;
             };
           };
+          elixir = pkgs.mkShell {
+            name = "elixir";
+            packages = (with pkgs; [ postgresql nodejs_18 ]) ++
+              # Linux only
+              pkgs.lib.optionals (pkgs.stdenv.isLinux) (with pkgs; [ gigalixir inotify-tools libnotify ]) ++
+              # macOS only
+              pkgs.lib.optionals (pkgs.stdenv.isDarwin) (with pkgs; [ terminal-notifier ]) ++
+              (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]);
+          };
+          nodejs = pkgs.mkShell {
+            name = "nodejs";
+            packages = (with pkgs; [ nodejs ]);
+          };
         };
       # }}}
     });# // devEnvs;

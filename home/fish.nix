@@ -19,6 +19,19 @@ in
   # Fish functions ----------------------------------------------------------------------------- {{{
 
   programs.fish.functions = {
+    ema = ''
+      if not emacsclient -a false -e '(setq persp-emacsclient-init-frame-behaviour-override nil)' > /dev/null
+       emacsclient -n -r -a "" -e '(setq persp-emacsclient-init-frame-behaviour-override nil)' > /dev/null
+      end
+      set screenWidth 1440
+      set screenHeight 900
+      set margin 80
+      set height (math "$screenHeight - $margin * 2")
+      set width (math "$screenWidth - $margin * 2")
+
+      emacsclient -n -r -a "" -F "((width . (text-pixels . $width)) (height . (text-pixels . $height)) (left . $margin) (top . $margin))" -c $argv > /dev/null
+      open -a Emacs
+    '';
     # Create a direnv flake in the current directory
     # https://determinate.systems/posts/nix-direnv
     dvd = ''
@@ -121,6 +134,7 @@ in
     nf = "nix flake";
     nr = "nix run";
     ns = "nix search";
+    e = "emacsclient -t -a ''";
 
     # Other
     #".." = "cd ..";

@@ -43,8 +43,13 @@ in
     "homebrew/cask-versions"
     "homebrew/core"
     "homebrew/services"
+    "railwaycat/emacsmacport"
+    "d12frosted/emacs-plus"
     #"nrlquaker/createzap"
     "quarkw/cask"
+    "pkgxdev/made"
+    "elixir-tools/tap"
+    "ngrok/ngrok"
   ];
 
   # Prefer installing application from the Mac App Store
@@ -78,6 +83,7 @@ in
   homebrew.casks = [
     "alfred"
     "alt-tab" # contexts? alternative
+    "dash"
     "visual-studio-code"
     "microsoft-remote-desktop"
     "1password-cli"
@@ -86,13 +92,17 @@ in
     "buzz"
     "coteditor"
     "cron"
+    "mac-mouse-fix"
     "orion"
+    "livebook"
     "bettertouchtool"
     "kap"
     "keyboard-maestro"
     "swish"
+    "slack"
     "slidepad"
     "windscribe"
+    "discord"
     #"gcenx/wine/wine-crossover"
     #"anki"
     #"arq"
@@ -127,10 +137,12 @@ in
     #"tor-browser"
     #"transmission"
     #"transmit"
+    "ngrok/ngrok/ngrok"
     "visual-studio-code"
     #"vlc"
     #"yubico-yubikey-manager"
     #"yubico-yubikey-personalization-gui"
+    "zed"
     "zoom"
   ] ++ casks.greedy ++ casks.applicationsFolderInstall;
 
@@ -159,7 +171,21 @@ in
   homebrew.brews = [
     #"swift-format"
     #"swiftlint"
+    "blueutil"
     "xcodegen"
+    "pkgxdev/made/pkgx"
+    "yt-dlp"
+    "elixir-tools/tap/next-ls"
+    # {
+    #   name = "emacs-mac";
+    #   args = [ "with-imagemagick" ];
+    #   link = true;
+    # }
+    {
+      name = "emacs-plus@30";
+      args = [ "with-imagemagick" "with-native-comp" ];
+      link = true;
+    }
   ];
 
   homebrew.masApps = {

@@ -14,7 +14,7 @@
       path = .;
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = (with pkgs; [ elixir ]) ++
+          packages = (with pkgs; [ elixir_1_15 postgresql ]) ++
             # Linux only
             pkgs.lib.optionals (pkgs.stdenv.isLinux) (with pkgs; [ gigalixir inotify-tools libnotify ]) ++
             # macOS only

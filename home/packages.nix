@@ -55,7 +55,7 @@
       unrar # extract RAR archives
       upterm # secure terminal sharing
       wget
-      yt-dlp
+      #yt-dlp
       xz # extract XZ archives
     ;
 
@@ -68,12 +68,14 @@
       #elixir
       # idris2
       #jq
-      #nodejs
+      nodejs
       pijul
       #php
       #s3cmd
       #stack
       #typescript
+      tree
+      #asdf-vm
     ;
     #inherit (pkgs.haskellPackages)
       #cabal-install
